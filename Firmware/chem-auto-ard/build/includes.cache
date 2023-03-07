@@ -1,0 +1,17 @@
+[
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "C:\\Users\\fabian.castano\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.5\\cores\\esp32"
+  },
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "C:\\Users\\fabian.castano\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.5\\variants\\esp32"
+  },
+  {
+    "Sourcefile": "c:\\GitHub\\ChemiAutomation_Prj\\Firmware\\chem-auto-ard\\build\\sketch\\ChemAuto.ino.cpp",
+    "Include": "",
+    "Includepath": null
+  }
+]
