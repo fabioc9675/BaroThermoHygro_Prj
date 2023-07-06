@@ -60,8 +60,9 @@ In `app.json` add the following bellow `"userInterfaceStyle": "light",`
 
 ## Run the app
 
+si sale error se debe crear el archivo `local.properties` y agregar la direccion del SDK `sdk.dir = /Users/fabiancastano/Library/Android/sdk`
+
 - use the following command `npx expo run:android`
-  si sale error se debe crear el archivo `local.properties` y agregar la direccion del SDK `sdk.dir = /Users/fabiancastano/Library/Android/sdk`
 
 ### Release on Android
 
