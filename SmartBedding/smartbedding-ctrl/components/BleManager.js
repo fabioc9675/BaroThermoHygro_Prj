@@ -14,7 +14,6 @@ import {
 } from "react-native";
 import base64 from "react-native-base64";
 import { BleManager } from "react-native-ble-plx";
-import styles from "./Styles/styles";
 
 const transactionId = "moniter";
 
@@ -136,7 +135,7 @@ export default class SB_BLE extends Component {
         return;
       }
       if (device.name === "TAPP_Fab") {
-        this.connectBleDevice(device.id, device);
+        connectBleDevice(device.id, device);
         console.log("testing");
         console.log(device.name);
         console.log(device.id);
@@ -352,7 +351,21 @@ export default class SB_BLE extends Component {
         <View style={styles.textBox}>
           <Text>{this.state.text1}</Text>
         </View>
-
+        <View style={styles.listBox}>
+          <FlatList
+            keyExtractor={(item) => item.id} // funtion for change the key
+            data={this.state.devices}
+            renderItem={(
+              { item } // function to render the items inside the list
+            ) => (
+              <TouchableOpacity
+                onPress={() => this.connectBleDevice(item.key, item.dev)} // touchable propertie with on press function
+              >
+                <Text style={styles.listText}>{item.name}</Text>
+              </TouchableOpacity>
+            )}
+          />
+        </View>
         <View style={styles.textContainer}>
           <Text style={styles.listText}> {this.state.text_rx}</Text>
           <Text style={styles.listText}> {this.state.text_no}</Text>
@@ -378,3 +391,52 @@ export default class SB_BLE extends Component {
     );
   }
 }
+
+// styles object
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "flex-start",
+  },
+  title: {
+    fontSize: 18,
+    paddingTop: 25,
+  },
+  bleContainer: {
+    paddingTop: 30,
+    alignItems: "center",
+    justifyContent: "flex-start",
+  },
+  textBox: {
+    alignItems: "center",
+    marginVertical: 10,
+  },
+  listBox: {
+    flex: 3,
+    backgroundColor: "#f2f2f2",
+    alignItems: "flex-start",
+    marginVertical: 10,
+    width: 300,
+  },
+  listText: {
+    fontSize: 18,
+    alignItems: "center",
+    margin: 10,
+    width: 280,
+  },
+  fotter: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "flex-end",
+    marginBottom: 50,
+    width: 280,
+    justifyContent: "space-between",
+  },
+  textContainer: {
+    flex: 1,
+    flexDirection: "column",
+    fontSize: 20,
+  },
+});
