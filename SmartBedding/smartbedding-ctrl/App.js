@@ -34,6 +34,7 @@ export default class SB_BLE extends Component {
       text1: "Hello BLE",
       text_rx: "None",
       text_no: "None",
+      text_no_end: "",
       makedata: [],
       showToast: false,
       notificationReceiving: false,
@@ -324,11 +325,27 @@ export default class SB_BLE extends Component {
             console.log(error);
           }
           if (characteristic) {
-            console.log("monitor.......");
-            console.log(base64.decode(characteristic.value));
-            this.setState({
-              text_no: base64.decode(characteristic.value),
-            });
+            // console.log("monitor.......");
+            // console.log(base64.decode(characteristic.value));
+            if (base64.decode(characteristic.value) === "Ini") {
+              this.setState({
+                text_no_end: "",
+              });
+              console.log("Ini");
+            } else if (base64.decode(characteristic.value) !== "Fin") {
+              this.setState({
+                text_no_end: this.state.text_no_end.concat(
+                  base64.decode(characteristic.value)
+                ),
+              });
+              console.log(this.state.text_no_end);
+            } else {
+              this.setState({
+                text_no: this.state.text_no_end,
+                // text_no_end: "",
+              });
+              console.log("Fin");
+            }
           }
         }
       );
