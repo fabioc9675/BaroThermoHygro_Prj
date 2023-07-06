@@ -47,6 +47,20 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     fontSize: 20,
   },
+  app: {
+    flex: 1,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    backgroundColor: "rgb(250,250,250)",
+    padding: 2,
+  },
+  item: {
+    flex: 16,
+    padding: 8,
+    margin: 1,
+    borderRadius: 4,
+    height: "50%",
+  },
 });
 
 export default styles;

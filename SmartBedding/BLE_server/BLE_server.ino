@@ -125,7 +125,10 @@ void loop()
   Serial.println("fin");
 
   for (int i = 0; i < 48; i++){
-    data_no = String(dato[4*i]) +',' + String(dato[4*i+1])+',' + String(dato[4*i+2])+',' + String(dato[4*i+3])+',';
+    data_no = String(dato[4*i]) +',' + String(dato[4*i+1])+',' + String(dato[4*i+2])+',' + String(dato[4*i+3]);
+    if (i < 47){
+      data_no = data_no + ',';
+    }
     Serial.print(data_no);
     data_no.toCharArray(buf_no, data_no.length() + 1);
     pCharacteristic_no->setValue(buf_no);

@@ -12,14 +12,18 @@
     "@shopify/react-native-skia": "0.1.172",
     "eas-cli": "^3.15.0",
     "expo": "~48.0.18",
+    "expo-dev-client": "~2.2.1",
     "expo-device": "~5.2.1",
+    "expo-splash-screen": "~0.18.2",
     "expo-status-bar": "~1.4.4",
     "react": "18.2.0",
     "react-native": "0.71.8",
     "react-native-base64": "^0.2.1",
     "react-native-ble-plx": "^2.0.3",
-    "expo-splash-screen": "~0.18.2",
-    "expo-dev-client": "~2.2.1"
+    "react-native-canvas": "^0.1.39",
+    "react-native-image-base64": "^0.1.4",
+    "react-native-svg": "13.4.0",
+    "react-native-webview": "^13.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

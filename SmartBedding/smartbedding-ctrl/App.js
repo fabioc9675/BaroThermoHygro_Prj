@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect } from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -17,6 +17,10 @@ import { BleManager } from "react-native-ble-plx";
 import styles from "./Styles/styles";
 
 const transactionId = "moniter";
+
+const renderItem = ({ item }) => {
+  return <View style={styles.item}></View>;
+};
 
 export default class SB_BLE extends Component {
   // creation of constructor for SB_BLE
@@ -38,6 +42,7 @@ export default class SB_BLE extends Component {
       makedata: [],
       showToast: false,
       notificationReceiving: false,
+      dataMap: [],
     };
     console.log("App is running");
   }
@@ -338,10 +343,12 @@ export default class SB_BLE extends Component {
                   base64.decode(characteristic.value)
                 ),
               });
-              console.log(this.state.text_no_end);
+              // console.log(this.state.text_no_end);
             } else {
+              const newArray = this.state.text_no_end.split(",").map(Number);
               this.setState({
                 text_no: this.state.text_no_end,
+                dataMap: newArray,
                 // text_no_end: "",
               });
               console.log("Fin");
@@ -370,9 +377,32 @@ export default class SB_BLE extends Component {
           <Text>{this.state.text1}</Text>
         </View>
 
+        <View style={styles.app}>
+          <View style={{ flex: 1 }}>
+            <FlatList
+              data={this.state.dataMap}
+              renderItem={({ item }) => {
+                return (
+                  <View
+                    style={[
+                      styles.item,
+                      {
+                        backgroundColor: `rgba(69, 78, 105, ${
+                          0.1 + item / 100
+                        })`,
+                      },
+                    ]}
+                  ></View>
+                );
+              }}
+              keyExtractor={(item) => item}
+              numColumns={16}
+            />
+          </View>
+        </View>
+
         <View style={styles.textContainer}>
           <Text style={styles.listText}> {this.state.text_rx}</Text>
-          <Text style={styles.listText}> {this.state.text_no}</Text>
         </View>
         <View style={styles.fotter}>
           <Button title={"Ack"} onPress={() => this.readMessage()} />
