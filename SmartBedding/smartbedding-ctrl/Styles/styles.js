@@ -8,18 +8,23 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
   },
+  header: {
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "flex-start",
+  },
   title: {
     fontSize: 20,
     paddingTop: 25,
   },
-  bleContainer: {
-    paddingTop: 30,
-    alignItems: "center",
-    justifyContent: "flex-start",
-  },
+
   textBox: {
     alignItems: "center",
-    marginVertical: 10,
+    marginVertical: 5,
+  },
+  textBoxText: {
+    fontStyle: "italic",
+    fontSize: 12,
   },
   listBox: {
     flex: 3,
@@ -35,31 +40,52 @@ const styles = StyleSheet.create({
     width: 280,
   },
   fotter: {
-    flex: 1,
-    flexDirection: "row",
-    alignItems: "flex-end",
-    marginBottom: 50,
+    flexDirection: "column",
+    alignItems: "center",
+    marginBottom: 25,
     width: 280,
     justifyContent: "space-between",
   },
   textContainer: {
     flex: 1,
     flexDirection: "column",
-    fontSize: 20,
+    fontSize: 18,
   },
   app: {
-    flex: 1,
+    flex: 2,
     flexDirection: "row",
     flexWrap: "wrap",
     backgroundColor: "rgb(250,250,250)",
     padding: 2,
   },
   item: {
-    flex: 16,
+    flex: 18,
     padding: 8,
     margin: 1,
     borderRadius: 4,
-    height: "50%",
+    height: "60%",
+  },
+  bleContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    width: "70%",
+    padding: 10,
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  button: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: 100,
+    height: 35,
+    borderRadius: 4,
+    backgroundColor: "rgb(69,78,105)",
+    elevation: 5,
+  },
+  textButton: {
+    fontSize: 14,
+    letterSpacing: 0.35,
+    color: "white",
   },
 });
 

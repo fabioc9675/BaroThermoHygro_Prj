@@ -38,6 +38,8 @@ export default class SB_BLE extends Component {
       text1: "Hello BLE",
       text_rx: "None",
       text_no: "None",
+      text_Temp: "18",
+      text_Hum: "45",
       text_no_end: "",
       makedata: [],
       showToast: false,
@@ -175,7 +177,8 @@ export default class SB_BLE extends Component {
       setTimeout(() => {
         this.manager.stopDeviceScan();
         console.log("Stop scanning");
-      }, 10000);
+        // this.setState({ text1: "Not devices" });
+      }, 5000);
     });
   }
 
@@ -207,7 +210,7 @@ export default class SB_BLE extends Component {
             device: dev,
           });
           //console.log(this.state);
-          this.setState({ text1: "connected to " + dev.name });
+          this.setState({ text1: "Connected to SmartBedding: " + dev.name });
         })();
         this.setState({ device: dev });
         return dev.discoverAllServicesAndCharacteristics();
@@ -365,16 +368,37 @@ export default class SB_BLE extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <Text style={styles.title}>Hello SmartBedding App</Text>
+        <View style={styles.header}>
+          <Image
+            source={require("./resources/smartLogo.png")}
+            style={{ height: 50, resizeMode: "contain" }}
+          />
+        </View>
         <View style={styles.bleContainer}>
           {this.state.deviceid ? (
-            <Button title={"Disconnect"} onPress={() => this.disconnect()} />
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => this.disconnect()}
+            >
+              <Text style={styles.textButton}>DISCONNECT</Text>
+            </TouchableOpacity>
           ) : (
-            <Button title={"Scan"} onPress={() => this.scanAndConnect()} />
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => this.scanAndConnect()}
+            >
+              <Text style={styles.textButton}>SCAN</Text>
+            </TouchableOpacity>
           )}
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => this.monitorMessage()}
+          >
+            <Text style={styles.textButton}>MONITOR</Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.textBox}>
-          <Text>{this.state.text1}</Text>
+          <Text style={styles.textBoxText}>{this.state.text1}</Text>
         </View>
 
         <View style={styles.app}>
@@ -402,16 +426,21 @@ export default class SB_BLE extends Component {
         </View>
 
         <View style={styles.textContainer}>
-          <Text style={styles.listText}> {this.state.text_rx}</Text>
+          <Text style={styles.listText}>
+            Temperature: {this.state.text_Temp} ºC
+          </Text>
+          <Text style={styles.listText}>Humidity: {this.state.text_Hum} %</Text>
         </View>
+        <View style={styles.fotter}></View>
+
         <View style={styles.fotter}>
-          <Button title={"Ack"} onPress={() => this.readMessage()} />
-          <Button
-            title={"Ris 0"}
-            onPress={() => this.writeMessage("Ris 0", "Ris 0 Writted")}
+          <Image
+            source={require("./resources/gliatech.png")}
+            style={{ height: 50, resizeMode: "contain" }}
           />
-          <Button title={"Ris 1"} onPress={() => this.monitorMessage()} />
+          <Text>Powered by: Gliatech</Text>
         </View>
+
         {Platform.OS === "ios" && ( // add status bar just for ios component
           <StatusBar
             animated={true}
